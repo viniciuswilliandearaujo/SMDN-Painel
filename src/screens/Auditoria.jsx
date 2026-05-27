@@ -55,11 +55,6 @@ export default function Auditoria() {
 
   return (
     <div className="p-8 space-y-6 animate-fade-in">
-      <div>
-        <h1 className="text-title-medium font-bold text-slate-800">Auditoria</h1>
-        <p className="text-sm text-slate-500 mt-1">Registro cronológico de todas as ações realizadas no sistema.</p>
-      </div>
-
       {/* Summary */}
       <div className="grid grid-cols-4 gap-4">
         {[
