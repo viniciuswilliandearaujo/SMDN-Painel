@@ -92,10 +92,6 @@ export default function Auditoria() {
             <option value="record">Ocorrências</option>
             <option value="profile">Perfil</option>
           </select>
-          <select className="select-field w-auto" value={filterUser} onChange={(e) => setFilterUser(e.target.value)}>
-            <option value="all">Todos Operadores</option>
-            {users.map((u) => <option key={u}>{u}</option>)}
-          </select>
           <span className="text-xs text-slate-400 ml-auto">{filtered.length} evento(s)</span>
         </div>
 
