@@ -36,9 +36,9 @@ const BY_SEVERITY = [
 ]
 
 const BY_STATUS = [
-  { label: 'Resolvidas',    count: 291, pct: 89, color: '#02c602' },
-  { label: 'Em andamento',  count: 24,  pct: 7,  color: '#ff6a00' },
-  { label: 'Pendentes',     count: 12,  pct: 4,  color: '#c60202' },
+  { label: 'Resolvidas',   count: 291, pct: 89, color: '#02c602' },
+  { label: 'Em andamento', count: 24,  pct: 7,  color: '#ff6a00' },
+  { label: 'Pendentes',    count: 12,  pct: 4,  color: '#c60202' },
 ]
 
 const TYPE_COLORS = ['bg-text-main', 'bg-status-severe', 'bg-status-regular', 'bg-action-inactive', 'bg-status-critical', 'bg-slate-400']
@@ -48,7 +48,6 @@ const maxCity  = Math.max(...BY_CITY.map((c) => c.count))
 
 const PERIODS = ['Últimos 7 dias', 'Últimos 30 dias', 'Últimos 6 meses', 'Último ano']
 
-// Donut helpers
 const DONUT_R = 54
 const DONUT_CX = 70
 const DONUT_CY = 70
@@ -71,9 +70,22 @@ export default function Relatorios() {
 
   return (
     <div className="p-8 space-y-6 animate-fade-in">
-      {/* Header */}
-      <div className="flex items-center justify-between flex-wrap gap-3">
-        <div>
+
+      {/* Header + KPIs na mesma linha */}
+      <div className="flex items-center justify-between flex-wrap gap-4">
+        <div className="flex gap-4 flex-wrap">
+          {[
+            { label: 'TOTAL DE OCORRÊNCIAS', value: '327', delta: '+12%', positive: false, color: 'text-text-main' },
+            { label: 'TAXA DE RESOLUÇÃO',    value: '89%', delta: '+5%',  positive: true,  color: 'text-status-success' },
+          ].map((kpi) => (
+            <Card key={kpi.label} className="py-4 min-w-[200px]">
+              <p className="text-label text-slate-500 mb-1.5">{kpi.label}</p>
+              <p className={`text-3xl font-bold ${kpi.color}`}>{kpi.value}</p>
+              <p className={`text-xs font-semibold mt-1 ${kpi.positive ? 'text-status-success' : 'text-status-critical'}`}>
+                {kpi.delta} em comparação ao período anterior
+              </p>
+            </Card>
+          ))}
         </div>
         <div className="flex items-center gap-2 bg-bg-surface border border-border-soft rounded-lg p-1">
           {PERIODS.map((p) => (
@@ -86,22 +98,6 @@ export default function Relatorios() {
             </button>
           ))}
         </div>
-      </div>
-
-      {/* KPIs */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { label: 'TOTAL DE OCORRÊNCIAS', value: '327', delta: '+12%', positive: false, color: 'text-text-main' },
-          { label: 'TAXA DE RESOLUÇÃO',    value: '89%', delta: '+5%',  positive: true,  color: 'text-status-success' },
-        ].map((kpi) => (
-          <Card key={kpi.label} className="py-4">
-            <p className="text-label text-slate-500 mb-1.5">{kpi.label}</p>
-            <p className={`text-3xl font-bold ${kpi.color}`}>{kpi.value}</p>
-            <p className={`text-xs font-semibold mt-1 ${kpi.positive ? 'text-status-success' : 'text-status-critical'}`}>
-              {kpi.delta} em comparação ao período anterior
-            </p>
-          </Card>
-        ))}
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
@@ -158,7 +154,6 @@ export default function Relatorios() {
       {/* Distribuição de Severidade + Status das Ocorrências */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
 
-        {/* Distribuição de Severidade */}
         <Card>
           <h3 className="text-card-title font-bold text-slate-800 mb-5">Distribuição de Severidade</h3>
           <div className="space-y-4">
@@ -187,11 +182,9 @@ export default function Relatorios() {
           </div>
         </Card>
 
-        {/* Status das Ocorrências */}
         <Card>
           <h3 className="text-card-title font-bold text-slate-800 mb-5">Status das Ocorrências</h3>
           <div className="flex items-center gap-8">
-            {/* Donut */}
             <div className="relative flex-shrink-0">
               <svg width="140" height="140" viewBox="0 0 140 140">
                 <circle cx={DONUT_CX} cy={DONUT_CY} r={DONUT_R} fill="none" stroke="#f1f5f9" strokeWidth="16" />
@@ -216,7 +209,6 @@ export default function Relatorios() {
                 <span className="text-[10px] text-slate-400 font-semibold">total</span>
               </div>
             </div>
-            {/* Legend */}
             <div className="flex-1 space-y-4">
               {BY_STATUS.map((s) => (
                 <div key={s.label}>
@@ -262,4 +254,4 @@ export default function Relatorios() {
       </Card>
     </div>
   )
-} 
+}
