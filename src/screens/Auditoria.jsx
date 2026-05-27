@@ -1,5 +1,9 @@
 import { useState, useMemo } from 'react'
 import Card from '../components/Card'
+import authIcon from '../assets/menu/inativo/lock.svg';
+import alertIcon from '../assets/auditoria/alert-triangle.svg';
+import recordIcon from '../assets/auditoria/flag.svg';
+import userIcon from '../assets/auditoria/user.svg';
 
 const LOG_ENTRIES = [
   { id: 1, action: 'LOGIN', user: 'Carlos Mendes', role: 'Defesa Civil', detail: 'Acesso ao sistema autorizado.', at: '2025-01-10T09:05:00', ip: '192.168.0.10', type: 'auth' },
@@ -15,10 +19,10 @@ const LOG_ENTRIES = [
 ]
 
 const TYPE_CONFIG = {
-  auth: { color: 'bg-text-main', light: 'bg-blue-50', text: 'text-text-main', icon: '🔐' },
-  alert: { color: 'bg-status-critical', light: 'bg-red-50', text: 'text-status-critical', icon: '📢' },
-  record: { color: 'bg-status-success', light: 'bg-green-50', text: 'text-status-success', icon: '📋' },
-  profile: { color: 'bg-status-regular', light: 'bg-yellow-50', text: 'text-status-regular', icon: '👤' },
+  auth: { color: 'bg-text-main', light: 'bg-blue-50', text: 'text-text-main', icon: <img src={authIcon} width="20" height="20" alt="lock" /> },
+  alert: { color: 'bg-status-critical', light: 'bg-red-50', text: 'text-status-critical', icon: <img src={alertIcon} width="20" height="20" alt="flag" /> },
+  record: { color: 'bg-status-success', light: 'bg-green-50', text: 'text-status-success', icon: <img src={recordIcon} width="20" height="20" alt="flag" /> },
+  profile: { color: 'bg-status-regular', light: 'bg-yellow-50', text: 'text-status-regular', icon: <img src={userIcon} width="20" height="20" alt="user" /> },
 }
 
 const ACTION_LABELS = {
