@@ -46,7 +46,7 @@ const TYPE_COLORS = ['bg-text-main', 'bg-status-severe', 'bg-status-regular', 'b
 const maxTotal = Math.max(...MONTHLY.map((m) => m.total))
 const maxCity  = Math.max(...BY_CITY.map((c) => c.count))
 
-const PERIODS = ['Últimos 7 dias', 'Últimos 30 dias', 'Últimos 6 meses', '2024']
+const PERIODS = ['Últimos 7 dias', 'Últimos 30 dias', 'Últimos 6 meses', 'Último ano']
 
 // Donut helpers
 const DONUT_R = 54
@@ -74,8 +74,6 @@ export default function Relatorios() {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-title-medium font-bold text-slate-800">Relatórios Analíticos</h1>
-          <p className="text-sm text-slate-500 mt-1">Visão consolidada de ocorrências e tendências.</p>
         </div>
         <div className="flex items-center gap-2 bg-bg-surface border border-border-soft rounded-lg p-1">
           {PERIODS.map((p) => (
@@ -100,7 +98,7 @@ export default function Relatorios() {
             <p className="text-label text-slate-500 mb-1.5">{kpi.label}</p>
             <p className={`text-3xl font-bold ${kpi.color}`}>{kpi.value}</p>
             <p className={`text-xs font-semibold mt-1 ${kpi.positive ? 'text-status-success' : 'text-status-critical'}`}>
-              {kpi.delta} vs período anterior
+              {kpi.delta} em comparação ao período anterior
             </p>
           </Card>
         ))}
