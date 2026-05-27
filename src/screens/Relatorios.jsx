@@ -15,8 +15,7 @@ const BY_TYPE = [
   { type: 'Enchente', count: 42, pct: 34 },
   { type: 'Deslizamento', count: 28, pct: 22 },
   { type: 'Temporal', count: 21, pct: 17 },
-  { type: 'Queda de Árvore', count: 18, pct: 14 },
-  { type: 'Incêndio', count: 12, pct: 10 },
+  { type: 'Tornado', count: 1, pct: 10 },
   { type: 'Desabamento', count: 4, pct: 3 },
 ]
 
