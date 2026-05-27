@@ -50,7 +50,7 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onLogout }) {
       {/* Brand */}
       <div className="px-5 pt-7 pb-6 border-b border-white/5">
         <div className="flex items-center gap-3">
-          <img src="/src/assets/logo.svg" alt="SMDN Logo" className="w-9 h-9 flex-shrink-0"/>
+          <img src="/src/assets/logo-claro.svg" alt="SMDN Logo" className="w-9 h-9 flex-shrink-0"/>
         </div>
       </div>
 
@@ -72,9 +72,6 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onLogout }) {
             >
               <span className={active ? 'text-white' : 'text-text-on-dark opacity-70'}>{item.icon}</span>
               <span className="truncate">{item.label}</span>
-              {item.id === 'reportar' && (
-                <span className="ml-auto bg-status-critical text-white text-[10px] font-bold px-1.5 py-0.5 rounded-badge leading-none">5</span>
-              )}
             </button>
           )
         })}
