@@ -1,58 +1,106 @@
-/** @type {import('tailwindcss').Config} */
-export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-  theme: {
-    extend: {
-      fontFamily: {
-        sans: ['K2D', 'system-ui', 'sans-serif'],
-      },
-      colors: {
-        'bg-main': '#e4e8eb',
-        'bg-sidebar': '#09162e',
-        'bg-surface': '#ffffff',
-        'text-main': '#44769b',
-        'text-on-dark': '#a6c1d4',
-        'action-inactive': '#18395c',
-        'action-hover': '#2d5a87',
-        'status-critical': '#c60202',
-        'status-severe': '#ff6a00',
-        'status-regular': '#cab900',
-        'status-success': '#02c602',
-        'status-critical-bg': '#fff0f0',
-        'status-severe-bg': '#fff5ed',
-        'status-regular-bg': '#fffbe0',
-        'status-success-bg': '#f0fff0',
-        'border-soft': '#d0dce6',
-        'sidebar-active': '#2563eb',
-      },
-      fontSize: {
-        'title-large': ['32px', { fontWeight: '700', lineHeight: '1.2' }],
-        'title-medium': ['24px', { fontWeight: '700', lineHeight: '1.3' }],
-        'card-title': ['18px', { fontWeight: '600', lineHeight: '1.4' }],
-        body: ['14px', { fontWeight: '400', lineHeight: '1.6' }],
-        label: ['12px', { fontWeight: '700', lineHeight: '1.4', letterSpacing: '0.05em' }],
-      },
-      boxShadow: {
-        card: '0 2px 12px 0 rgba(9,22,46,0.07)',
-        'card-hover': '0 6px 24px 0 rgba(9,22,46,0.13)',
-        sidebar: '4px 0 24px 0 rgba(9,22,46,0.18)',
-        modal: '0 16px 64px 0 rgba(9,22,46,0.22)',
-      },
-      borderRadius: {
-        card: '12px',
-        badge: '999px',
-      },
-      animation: {
-        'fade-in': 'fadeIn 0.2s ease-out',
-        'slide-up': 'slideUp 0.25s cubic-bezier(.16,1,.3,1)',
-        pulse2: 'pulse2 2s ease-in-out infinite',
-      },
-      keyframes: {
-        fadeIn: { from: { opacity: 0 }, to: { opacity: 1 } },
-        slideUp: { from: { opacity: 0, transform: 'translateY(16px)' }, to: { opacity: 1, transform: 'translateY(0)' } },
-        pulse2: { '0%,100%': { opacity: 1 }, '50%': { opacity: 0.5 } },
-      },
-    },
+import { useAuth } from '../hooks/useAuth.js'
+import dashboardIcon from '../assets/menu/inativo/map-pin.svg';
+import reportIcon from '../assets/menu/inativo/flag.svg';
+import ocorrenciasIcon from '../assets/menu/inativo/alert-triangle.svg';
+import relatoriosIcon from '../assets/menu/inativo/pie-chart.svg';
+import auditoriaIcon from '../assets/menu/inativo/lock.svg';
+import perfilIcon from '../assets/menu/inativo/user.svg';
+import logoutIcon from '../assets/menu/inativo/log-out.svg';
+
+const NAV_ITEMS = [
+  {
+    id: 'dashboard',
+    label: 'Dashboard',
+    icon: <img src={dashboardIcon} width="20" height="20" alt="map-pin" />,
   },
-  plugins: [],
+  {
+    id: 'reportar',
+    label: 'Reportar',
+    icon: <img src={reportIcon} width="20" height="20" alt="flag" />,
+  },
+  {
+    id: 'ocorrencias',
+    label: 'Ocorrências',
+    icon: <img src={ocorrenciasIcon} width="20" height="20" alt="alert-triangle" />,
+  },
+  {
+    id: 'relatorios',
+    label: 'Relatórios',
+    icon: <img src={relatoriosIcon} width="20" height="20" alt="pie-chart" />,
+  },
+  {
+    id: 'auditoria',
+    label: 'Auditoria',
+    icon: <img src={auditoriaIcon} width="20" height="20" alt="lock" />,
+  },
+  {
+    id: 'perfil',
+    label: 'Perfil',
+    icon: <img src={perfilIcon} width="20" height="20" alt="user" />,
+  },
+]
+
+export default function Sidebar({ currentScreen, setCurrentScreen, onLogout }) {
+  const { user } = useAuth()
+
+  return (
+    <aside
+      className="sidebar-scroll flex flex-col w-[220px] min-w-[220px] h-screen bg-bg-sidebar shadow-sidebar overflow-y-auto"
+      style={{ zIndex: 10 }}
+    >
+      {/* Brand */}
+      <div className="px-5 pt-7 pb-6 border-b border-white/5">
+        <div className="flex items-center gap-3">
+          <img src="/src/assets/logo.svg" alt="SMDN Logo" className="w-9 h-9 flex-shrink-0"/>
+        </div>
+      </div>
+
+      {/* Nav */}
+      <nav className="flex-1 px-3 py-4 space-y-0.5">
+        {NAV_ITEMS.map((item) => {
+          const active = currentScreen === item.id
+          return (
+            <button
+              key={item.id}
+              onClick={() => setCurrentScreen(item.id)}
+              className={`
+                w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-left transition-all duration-150
+                ${active
+                  ? 'bg-text-main text-text-on-dark shadow-sm'
+                  : 'text-action-inactive hover:bg-white/5 hover:text-white'
+                }
+              `}
+            >
+              <span className={active ? 'text-text-on-dark' : 'text-action-inactive opacity-70'}>{item.icon}</span>
+              <span className="truncate">{item.label}</span>
+            </button>
+          )
+        })}
+      </nav>
+
+      {/* User + Logout */}
+      <div className="px-3 py-4 border-t border-white/5 space-y-2">
+        {user && (
+          <div className="flex items-center gap-3 px-3 py-2">
+            <div className="w-8 h-8 rounded-full bg-text-main/30 flex items-center justify-center flex-shrink-0">
+              <span className="text-text-on-dark text-xs font-bold">
+                {user.name?.split(' ').map((n) => n[0]).slice(0, 2).join('')}
+              </span>
+            </div>
+            <div className="min-w-0">
+              <p className="text-white text-xs font-semibold truncate">{user.name}</p>
+              <p className="text-text-on-dark text-[10px] opacity-60 truncate">{user.role}</p>
+            </div>
+          </div>
+        )}
+        <button
+          onClick={onLogout}
+          className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-action-inactive hover:bg-white/5 hover:text-white transition-all"
+        >
+          <img src={logoutIcon} width="20" height="20" alt="log-out" />
+          <span>Sair</span>
+        </button>
+      </div>
+    </aside>
+  )
 }
