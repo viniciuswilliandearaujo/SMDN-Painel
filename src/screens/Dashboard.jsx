@@ -1,6 +1,12 @@
 import { useState } from 'react'
 import Card from '../components/Card'
 import Modal from '../components/Modal'
+import Alert_triangle from '../assets/SMDN vetorização de imagens/WEB/icons-web/menu/inativo/alert-triangle.svg'
+import Flag from '../assets/SMDN vetorização de imagens/WEB/icons-web/menu/inativo/flag.svg'
+import Map_pin from '../assets/SMDN vetorização de imagens/WEB/icons-web/menu/inativo/map-pin.svg'
+import Check from '../assets/SMDN vetorização de imagens/WEB/icons-web/dashboard/check-circle.svg'
+
+
 
 const MOCK_DATA = {
   activeOccurrences: 12,
@@ -26,48 +32,13 @@ export default function Dashboard() {
   const [selectedOcc, setSelectedOcc] = useState(null)
 
   return (
-    <div className="p-8 space-y-6 animate-fade-in">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-title-medium font-bold text-slate-800">Dashboard</h1>
-          <p className="text-sm text-slate-500 mt-1">Monitoramento em tempo real – Vale do Paraíba-SP</p>
-        </div>
-        <div className="flex items-center gap-2 text-xs font-semibold text-status-success bg-status-success-bg border border-status-success/20 px-3 py-1.5 rounded-badge">
-          <span className="w-2 h-2 rounded-full bg-status-success animate-pulse2 block" />
-          Ao vivo
-        </div>
-      </div>
+    <div className="p-6 space-y-4 animate-fade-in">
 
-      {/* Stat counters */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {[
-          { label: 'OCORRÊNCIAS ATIVAS', value: MOCK_DATA.activeOccurrences, color: 'text-status-critical', bg: 'bg-status-critical-bg', icon: '🔴' },
-          { label: 'ALERTAS ATIVOS', value: MOCK_DATA.activeAlerts, color: 'text-status-severe', bg: 'bg-status-severe-bg', icon: '🟠' },
-          { label: 'SEVERIDADE CRÍTICA', value: MOCK_DATA.criticalSeverity, color: 'text-status-critical', bg: 'bg-status-critical-bg', icon: '⚠️' },
-          { label: 'RESOLVIDAS HOJE', value: MOCK_DATA.resolvedToday, color: 'text-status-success', bg: 'bg-status-success-bg', icon: '✅' },
-        ].map((s) => (
-          <Card key={s.label} className="flex items-center gap-4 py-4">
-            <div className={`w-12 h-12 rounded-xl ${s.bg} flex items-center justify-center text-xl flex-shrink-0`}>
-              {s.icon}
-            </div>
-            <div>
-              <p className="text-label text-slate-500">{s.label}</p>
-              <p className={`text-3xl font-bold mt-0.5 ${s.color}`}>{s.value}</p>
-            </div>
-          </Card>
-        ))}
-      </div>
-
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="relative grid grid-cols-1 lg:grid-cols-3 gap-6">
         {/* Map */}
-        <Card className="lg:col-span-2 p-0 overflow-hidden">
-          <div className="px-5 py-4 border-b border-border-soft flex items-center justify-between">
-            <h3 className="text-card-title font-bold text-slate-800">Mapa Geoespacial</h3>
-            <span className="text-xs text-slate-400">Integração com Mapbox/Leaflet via Supabase</span>
-          </div>
+        <Card className="w-full h-full lg:col-span-2 !p-0 overflow-hidden flex flex-col">
           {/* Map placeholder with SVG pins */}
-          <div className="relative h-80 bg-gradient-to-br from-slate-100 to-blue-50 overflow-hidden">
+          <div className="relative flex-1 bg-gradient-to-br from-slate-100 to-blue-50 overflow-hidden">
             {/* Fake grid */}
             <svg className="absolute inset-0 w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
               {[10,20,30,40,50,60,70,80,90].map((v) => (
@@ -166,6 +137,30 @@ export default function Dashboard() {
           </div>
         )}
       </Modal>
+      {/* Stat counters */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 absolute bottom-4">
+        {[
+          { label: 'OCORRÊNCIAS ATIVAS', value: MOCK_DATA.activeOccurrences, color: 'text-status-critical', icon: Alert_triangle },
+          { label: 'ALERTAS ATIVOS', value: MOCK_DATA.activeAlerts, color: 'text-status-severe', icon: Flag },
+          { label: 'SEVERIDADE CRÍTICA', value: MOCK_DATA.criticalSeverity, color: 'text-status-critical', icon: Map_pin },
+          { label: 'RESOLVIDAS HOJE', value: MOCK_DATA.resolvedToday, color: 'text-status-success', icon: Check },
+        ].map((s) => (
+          <Card key={s.label} className="w-260 h-100 flex items-center gap-4 py-4 bg-[#A6C1D4]">
+            
+            <div className={`w-15 h-15 rounded-xl flex items-center justify-center text-xl flex-shrink-0`}>
+              <img 
+                src={s.icon} 
+                alt={s.label} 
+                className="w-6 h-6 object-contain" 
+            />
+            </div>
+            <div>
+              <p className="text-label text-slate-500">{s.label}</p>
+              <p className={`text-3xl font-bold mt-0.5 ${s.color}`}>{s.value}</p>
+            </div>
+          </Card>
+        ))}
+      </div>
     </div>
   )
 }
