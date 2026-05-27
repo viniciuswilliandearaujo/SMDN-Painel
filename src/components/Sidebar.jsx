@@ -48,10 +48,8 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onLogout }) {
       style={{ zIndex: 10 }}
     >
       {/* Brand */}
-      <div className="px-5 pt-7 pb-6 border-b border-white/5">
-        <div className="flex items-center gap-3">
-          <img src="/src/assets/logo-claro.svg" alt="SMDN Logo" className="w-9 h-9 flex-shrink-0"/>
-        </div>
+      <div className="px-5 pt-6 pb-6 border-b border-white/5">
+        <img src="/src/assets/logo-claro.svg" alt="SMDN Logo" className="w-full max-w-[160px]"/>
       </div>
 
       {/* Nav */}
