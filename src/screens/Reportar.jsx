@@ -86,18 +86,38 @@ export default function Reportar() {
 
   return (
     <div className="p-8 space-y-6 animate-fade-in">
-      {/* Header */}
-      <div className="flex items-center justify-between">
-        <div>
-          <h1 className="text-title-medium font-bold text-slate-800">Reportar & Alertas</h1>
-          <p className="text-sm text-slate-500 mt-1">Dispare alertas para cidadãos e veja o histórico de comunicados.</p>
+      {/* Header + Stats row */}
+      <div className="flex items-center justify-between gap-6">
+        {/* Title */}
+        <div className="shrink-0">
         </div>
-        <button className="btn-primary flex items-center gap-2" onClick={() => setIsModalOpen(true)}>
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-            <path d="M8 3v10M3 8h10" stroke="white" strokeWidth="2" strokeLinecap="round" />
-          </svg>
-          Disparar Alerta
-        </button>
+
+        {/* Stats inline */}
+        <div className="flex items-center gap-4 flex-1 justify-end">
+          <Card className="text-center py-3 px-5">
+            <p className="text-label text-slate-500 mb-1">ALERTAS HOJE</p>
+            <p className="text-3xl font-bold text-text-main">3</p>
+          </Card>
+          <Card className="text-center py-3 px-5">
+            <p className="text-label text-slate-500 mb-1">TOTAL DESTINATÁRIOS</p>
+            <p className="text-3xl font-bold text-status-severe">5.550</p>
+          </Card>
+
+          {/* Big bell button */}
+          <button
+            className="flex flex-col items-center justify-center gap-1 bg-red-500 hover:bg-red-600 active:scale-95 transition-all rounded-2xl w-24 h-24 shadow-lg text-white shrink-0"
+            onClick={() => setIsModalOpen(true)}
+          >
+            <svg width="36" height="36" viewBox="0 0 24 24" fill="none">
+              <path
+                d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"
+                stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"
+              />
+              <path d="M13.73 21a2 2 0 0 1-3.46 0" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+            </svg>
+            <span className="text-xs font-bold leading-tight text-center">Disparar<br/>Alerta</span>
+          </button>
+        </div>
       </div>
 
       {/* Success toast */}
@@ -110,22 +130,6 @@ export default function Reportar() {
           Alerta disparado com sucesso!
         </div>
       )}
-
-      {/* Stats row */}
-      <div className="grid grid-cols-3 gap-4">
-        <Card className="text-center py-4">
-          <p className="text-label text-slate-500 mb-1">ALERTAS HOJE</p>
-          <p className="text-3xl font-bold text-text-main">3</p>
-        </Card>
-        <Card className="text-center py-4">
-          <p className="text-label text-slate-500 mb-1">TOTAL DESTINATÁRIOS</p>
-          <p className="text-3xl font-bold text-status-severe">5.550</p>
-        </Card>
-        <Card className="text-center py-4">
-          <p className="text-label text-slate-500 mb-1">TAXA DE ENTREGA</p>
-          <p className="text-3xl font-bold text-status-success">97.4%</p>
-        </Card>
-      </div>
 
       {/* History */}
       <Card className="p-0 overflow-hidden">
@@ -145,9 +149,18 @@ export default function Reportar() {
                   </div>
                   <p className="text-sm text-slate-600 mb-2">{alert.description}</p>
                   <div className="flex items-center gap-4 text-xs text-slate-400">
-                    <span>📅 {formatDate(alert.sentAt)}</span>
-                    <span>👤 {alert.operator}</span>
-                    <span>📲 {alert.recipients.toLocaleString('pt-BR')} destinatários</span>
+                    <span className="flex items-center gap-1">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="2" y="3" width="12" height="11" rx="1.5" stroke="currentColor" strokeWidth="1.4"/><path d="M5 1.5V4M11 1.5V4" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/><path d="M2 7h12" stroke="currentColor" strokeWidth="1.4"/></svg>
+                    {formatDate(alert.sentAt)}
+                    </span>
+                    <span className="flex items-center gap-1">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><circle cx="8" cy="5" r="3" stroke="currentColor" strokeWidth="1.4"/><path d="M2 13.5c0-2.485 2.686-4.5 6-4.5s6 2.015 6 4.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                    {alert.operator}
+                    </span>
+                    <span className="flex items-center gap-1">
+                    <svg width="12" height="12" viewBox="0 0 16 16" fill="none"><rect x="4" y="1" width="8" height="14" rx="1.5" stroke="currentColor" strokeWidth="1.4"/><path d="M7 12.5h2" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round"/></svg>
+                    {alert.recipients.toLocaleString('pt-BR')} destinatários
+                </span>
                   </div>
                 </div>
               </div>

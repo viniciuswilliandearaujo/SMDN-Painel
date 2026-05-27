@@ -14,7 +14,7 @@ const NAV_ITEMS = [
   },
   {
     id: 'reportar',
-    label: 'Reportar / Alertas',
+    label: 'Reportar',
     icon: <img src={reportIcon} width="20" height="20" alt="flag" />,
   },
   {
