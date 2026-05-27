@@ -172,19 +172,6 @@ export default function Perfil() {
               <label className="block text-label text-slate-600 mb-1.5">TELEFONE</label>
               <input className="input-field" value={form.phone} onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))} />
             </div>
-            <div>
-              <label className="block text-label text-slate-600 mb-1.5">CARGO / FUNÇÃO</label>
-              <input className="input-field" value={form.role} onChange={(e) => setForm((f) => ({ ...f, role: e.target.value }))} />
-            </div>
-            <div>
-              <label className="block text-label text-slate-600 mb-1.5">INSTITUIÇÃO</label>
-              <select className="select-field" value={form.institution} onChange={(e) => setForm((f) => ({ ...f, institution: e.target.value }))}>
-                <option>Defesa Civil do Estado de São Paulo</option>
-                <option>SAMU</option>
-                <option>Corpo de Bombeiros</option>
-                <option>Polícia Militar</option>
-              </select>
-            </div>
           </div>
           <div className="border-t border-border-soft pt-3">
             <p className="text-label text-slate-400 mb-2">ALTERAR SENHA</p>
