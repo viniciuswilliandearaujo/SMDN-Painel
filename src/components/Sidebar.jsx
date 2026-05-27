@@ -5,10 +5,10 @@ import ocorrenciasIcon from '../assets/menu/inativo/alert-triangle.svg';
 import relatoriosIcon from '../assets/menu/inativo/pie-chart.svg';
 import auditoriaIcon from '../assets/menu/inativo/lock.svg';
 import perfilIcon from '../assets/menu/inativo/user.svg';
+import logoutIcon from '../assets/menu/inativo/log-out.svg';
 
 const NAV_ITEMS = [
-  {
-    id: 'dashboard',
+  { id: 'dashboard',
     label: 'Dashboard',
     icon: <img src={dashboardIcon} width="20" height="20" alt="map-pin" />,
   },
@@ -50,11 +50,7 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onLogout }) {
       {/* Brand */}
       <div className="px-5 pt-7 pb-6 border-b border-white/5">
         <div className="flex items-center gap-3">
-          <img
-            src="/src/assets/logo.svg"
-            alt="SMDN Logo"
-            className="w-9 h-9 flex-shrink-0"
-          />
+          <img src="/src/assets/logo.svg" alt="SMDN Logo" className="w-9 h-9 flex-shrink-0"/>
         </div>
       </div>
 
@@ -103,9 +99,7 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onLogout }) {
           onClick={onLogout}
           className="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium text-text-on-dark hover:bg-white/5 hover:text-white transition-all"
         >
-          <svg width="18" height="18" viewBox="0 0 18 18" fill="none" className="opacity-60">
-            <path d="M6.75 9H15.75M12.75 6l3 3-3 3M7.5 5.25H3.75A.75.75 0 0 0 3 6v6a.75.75 0 0 0 .75.75H7.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-          </svg>
+          <img src={logoutIcon} width="20" height="20" alt="log-out" />
           <span>Sair</span>
         </button>
       </div>
