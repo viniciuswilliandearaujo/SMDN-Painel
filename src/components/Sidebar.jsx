@@ -1,73 +1,41 @@
 import { useAuth } from '../hooks/useAuth.js'
+import dashboardIcon from '../assets/menu/inativo/map-pin.svg';
+import reportIcon from '../assets/menu/inativo/flag.svg';
+import ocorrenciasIcon from '../assets/menu/inativo/alert-triangle.svg';
+import relatoriosIcon from '../assets/menu/inativo/pie-chart.svg';
+import auditoriaIcon from '../assets/menu/inativo/lock.svg';
+import perfilIcon from '../assets/menu/inativo/user.svg';
 
 const NAV_ITEMS = [
   {
     id: 'dashboard',
     label: 'Dashboard',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="2" y="2" width="7" height="7" rx="1.5" fill="currentColor" opacity=".9" />
-        <rect x="11" y="2" width="7" height="7" rx="1.5" fill="currentColor" opacity=".6" />
-        <rect x="2" y="11" width="7" height="7" rx="1.5" fill="currentColor" opacity=".6" />
-        <rect x="11" y="11" width="7" height="7" rx="1.5" fill="currentColor" opacity=".3" />
-      </svg>
-    ),
+    icon: <img src={dashboardIcon} width="20" height="20" alt="map-pin" />,
   },
   {
     id: 'reportar',
     label: 'Reportar / Alertas',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <path
-          d="M10 2L12.5 7.5H18L13.5 11L15.5 17L10 13.5L4.5 17L6.5 11L2 7.5H7.5L10 2Z"
-          fill="currentColor"
-          opacity=".85"
-        />
-      </svg>
-    ),
+    icon: <img src={reportIcon} width="20" height="20" alt="flag" />,
   },
   {
     id: 'ocorrencias',
     label: 'Ocorrências',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="3" y="4" width="14" height="2" rx="1" fill="currentColor" />
-        <rect x="3" y="9" width="10" height="2" rx="1" fill="currentColor" opacity=".7" />
-        <rect x="3" y="14" width="7" height="2" rx="1" fill="currentColor" opacity=".4" />
-        <circle cx="16" cy="14" r="3" fill="currentColor" opacity=".8" />
-        <path d="M14.5 14l1 1 2-2" stroke="white" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: <img src={ocorrenciasIcon} width="20" height="20" alt="alert-triangle" />,
   },
   {
     id: 'relatorios',
     label: 'Relatórios',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <rect x="3" y="3" width="14" height="14" rx="2" stroke="currentColor" strokeWidth="1.5" fill="none" opacity=".6" />
-        <path d="M7 13l2-3 2 2 3-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: <img src={relatoriosIcon} width="20" height="20" alt="pie-chart" />,
   },
   {
     id: 'auditoria',
     label: 'Auditoria',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="10" r="7" stroke="currentColor" strokeWidth="1.5" fill="none" opacity=".6" />
-        <path d="M10 6v4l3 2" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
-      </svg>
-    ),
+    icon: <img src={auditoriaIcon} width="20" height="20" alt="lock" />,
   },
   {
     id: 'perfil',
     label: 'Perfil',
-    icon: (
-      <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-        <circle cx="10" cy="7" r="3.5" stroke="currentColor" strokeWidth="1.5" fill="none" opacity=".8" />
-        <path d="M3 17c0-3.3 3.1-6 7-6s7 2.7 7 6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" fill="none" opacity=".6" />
-      </svg>
-    ),
+    icon: <img src={perfilIcon} width="20" height="20" alt="user" />,
   },
 ]
 
