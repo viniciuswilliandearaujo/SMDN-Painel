@@ -2,7 +2,7 @@ import { useState } from 'react'
 import Card from '../components/Card'
 import Modal from '../components/Modal'
 
-const ALERT_TYPES = ['Enchente', 'Deslizamento', 'Queda de Árvore', 'Temporal', 'Incêndio', 'Desabamento']
+const ALERT_TYPES = ['Enchente', 'Deslizamento', 'Temporal', 'Tornado']
 const CITIES = ['São José dos Campos', 'Taubaté', 'Caraguatatuba', 'Jacareí', 'Pindamonhangaba', 'Guaratinguetá']
 const SEVERITIES = ['critical', 'severe', 'regular']
 
@@ -39,16 +39,6 @@ const MOCK_ALERTS = [
   },
   {
     id: 4,
-    type: 'Queda de Árvore',
-    description: 'Árvore bloqueando Av. Brasil após ventos. Desvio necessário.',
-    city: 'Jacareí',
-    severity: 'regular',
-    sentAt: '2025-01-09T21:15:00',
-    recipients: 450,
-    operator: 'Roberto Lima',
-  },
-  {
-    id: 5,
     type: 'Enchente',
     description: 'Alagamento em vias do centro após enxurrada.',
     city: 'Pindamonhangaba',
