@@ -1,0 +1,153 @@
+import { useState } from 'react'
+import Card from '../components/Card'
+
+const MONTHLY = [
+  { month: 'Jul', total: 38, critical: 8 },
+  { month: 'Ago', total: 45, critical: 11 },
+  { month: 'Set', total: 29, critical: 5 },
+  { month: 'Out', total: 52, critical: 14 },
+  { month: 'Nov', total: 61, critical: 18 },
+  { month: 'Dez', total: 47, critical: 12 },
+  { month: 'Jan', total: 55, critical: 16 },
+]
+
+const BY_TYPE = [
+  { type: 'Enchente', count: 42, pct: 34 },
+  { type: 'Deslizamento', count: 28, pct: 22 },
+  { type: 'Temporal', count: 21, pct: 17 },
+  { type: 'Queda de Árvore', count: 18, pct: 14 },
+  { type: 'Incêndio', count: 12, pct: 10 },
+  { type: 'Desabamento', count: 4, pct: 3 },
+]
+
+const BY_CITY = [
+  { city: 'São José dos Campos', count: 51 },
+  { city: 'Taubaté', count: 28 },
+  { city: 'Caraguatatuba', count: 22 },
+  { city: 'Jacareí', count: 17 },
+  { city: 'Pindamonhangaba', count: 12 },
+  { city: 'Guaratinguetá', count: 9 },
+]
+
+const TYPE_COLORS = ['bg-text-main', 'bg-status-severe', 'bg-status-regular', 'bg-action-inactive', 'bg-status-critical', 'bg-slate-400']
+
+const maxTotal = Math.max(...MONTHLY.map((m) => m.total))
+const maxCity = Math.max(...BY_CITY.map((c) => c.count))
+
+const PERIODS = ['Últimos 7 dias', 'Últimos 30 dias', 'Últimos 6 meses', '2024']
+
+export default function Relatorios() {
+  const [period, setPeriod] = useState('Últimos 6 meses')
+
+  return (
+    <div className="p-8 space-y-6 animate-fade-in">
+      {/* Header */}
+      <div className="flex items-center justify-between flex-wrap gap-3">
+        <div>
+          <h1 className="text-title-medium font-bold text-slate-800">Relatórios Analíticos</h1>
+          <p className="text-sm text-slate-500 mt-1">Visão consolidada de ocorrências e tendências.</p>
+        </div>
+        <div className="flex items-center gap-2 bg-bg-surface border border-border-soft rounded-lg p-1">
+          {PERIODS.map((p) => (
+            <button
+              key={p}
+              onClick={() => setPeriod(p)}
+              className={`px-3 py-1.5 rounded text-xs font-semibold transition-all ${period === p ? 'bg-text-main text-white shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+            >
+              {p}
+            </button>
+          ))}
+        </div>
+      </div>
+
+      {/* KPIs */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        {[
+          { label: 'TOTAL DE OCORRÊNCIAS', value: '327', delta: '+12%', positive: false, color: 'text-text-main' },
+          { label: 'MÉDIA MENSAL', value: '46,7', delta: '-3%', positive: true, color: 'text-text-main' },
+          { label: 'TAXA DE RESOLUÇÃO', value: '89%', delta: '+5%', positive: true, color: 'text-status-success' },
+          { label: 'TEMPO MÉDIO RESPOSTA', value: '23 min', delta: '-8 min', positive: true, color: 'text-status-success' },
+        ].map((kpi) => (
+          <Card key={kpi.label} className="py-4">
+            <p className="text-label text-slate-500 mb-1.5">{kpi.label}</p>
+            <p className={`text-3xl font-bold ${kpi.color}`}>{kpi.value}</p>
+            <p className={`text-xs font-semibold mt-1 ${kpi.positive ? 'text-status-success' : 'text-status-critical'}`}>
+              {kpi.delta} vs período anterior
+            </p>
+          </Card>
+        ))}
+      </div>
+
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        {/* Bar Chart - monthly */}
+        <Card className="lg:col-span-2">
+          <h3 className="text-card-title font-bold text-slate-800 mb-6">Ocorrências por Mês</h3>
+          <div className="flex items-end gap-3 h-48">
+            {MONTHLY.map((m) => (
+              <div key={m.month} className="flex-1 flex flex-col items-center gap-1.5">
+                <span className="text-[10px] text-slate-400 font-bold">{m.total}</span>
+                <div className="w-full flex flex-col justify-end" style={{ height: '160px' }}>
+                  <div
+                    className="w-full rounded-t bg-text-main/20 relative overflow-hidden flex flex-col justify-end"
+                    style={{ height: `${(m.total / maxTotal) * 100}%` }}
+                  >
+                    <div
+                      className="w-full bg-status-critical rounded-t"
+                      style={{ height: `${(m.critical / m.total) * 100}%` }}
+                    />
+                  </div>
+                </div>
+                <span className="text-[11px] text-slate-500 font-medium">{m.month}</span>
+              </div>
+            ))}
+          </div>
+          <div className="flex items-center gap-5 mt-4">
+            <div className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-text-main/20 block" /><span className="text-xs text-slate-500">Total</span></div>
+            <div className="flex items-center gap-1.5"><span className="w-3 h-3 rounded-sm bg-status-critical block" /><span className="text-xs text-slate-500">Críticos</span></div>
+          </div>
+        </Card>
+
+        {/* Type breakdown */}
+        <Card>
+          <h3 className="text-card-title font-bold text-slate-800 mb-5">Por Tipo</h3>
+          <div className="space-y-3">
+            {BY_TYPE.map((t, i) => (
+              <div key={t.type}>
+                <div className="flex justify-between text-xs mb-1">
+                  <span className="text-slate-600 font-medium">{t.type}</span>
+                  <span className="text-slate-400 font-bold">{t.count}</span>
+                </div>
+                <div className="h-2 bg-slate-100 rounded-full overflow-hidden">
+                  <div
+                    className={`h-full rounded-full ${TYPE_COLORS[i]}`}
+                    style={{ width: `${t.pct}%`, transition: 'width 0.6s ease' }}
+                  />
+                </div>
+              </div>
+            ))}
+          </div>
+        </Card>
+      </div>
+
+      {/* By city */}
+      <Card>
+        <h3 className="text-card-title font-bold text-slate-800 mb-5">Ocorrências por Município</h3>
+        <div className="space-y-3">
+          {BY_CITY.map((c, i) => (
+            <div key={c.city} className="flex items-center gap-4">
+              <span className="text-sm text-slate-600 w-40 font-medium truncate">{c.city}</span>
+              <div className="flex-1 h-6 bg-slate-100 rounded overflow-hidden">
+                <div
+                  className="h-full bg-gradient-to-r from-text-main to-action-hover flex items-center justify-end pr-2 rounded transition-all duration-700"
+                  style={{ width: `${(c.count / maxCity) * 100}%` }}
+                >
+                  <span className="text-white text-[11px] font-bold">{c.count}</span>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Card>
+    </div>
+  )
+}
