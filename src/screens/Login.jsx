@@ -19,7 +19,10 @@ const Login = ({ view, setView, onLogin }) => {
       <div className="hidden lg:flex w-1/2 bg-bg-sidebar flex-col justify-center items-center p-12 text-text-on-dark">
         <div className="text-center space-y-8">
           <div>
-            <h1 className="text-5xl font-bold mb-4">SMDN</h1>
+
+            <div className="text-5xl font-bold mb-4">
+              <img src="/src/assets/logo-claro.svg" alt="SMDN Logo" className="w-full max-w-[160px]"/>
+            </div>
             <p className="text-2xl font-semibold">Sistema de Monitoramento de Desastres Naturais</p>
           </div>
 
