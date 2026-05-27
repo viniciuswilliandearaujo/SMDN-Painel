@@ -15,9 +15,8 @@ const MOCK_DATA = {
   recentOccurrences: [
     { id: 1, title: 'Enchente em Jardim Aquarius', severity: 'critical', city: 'São José dos Campos', time: '10 min atrás', coords: [45, 38] },
     { id: 2, title: 'Deslizamento na Serra', severity: 'severe', city: 'Caraguatatuba', time: '25 min atrás', coords: [72, 55] },
-    { id: 3, title: 'Queda de árvore', severity: 'regular', city: 'Taubaté', time: '1h atrás', coords: [38, 62] },
-    { id: 4, title: 'Incêndio em vegetação', severity: 'severe', city: 'Jacareí', time: '2h atrás', coords: [30, 75] },
-    { id: 5, title: 'Temporal previsto', severity: 'regular', city: 'Guaratinguetá', time: '3h atrás', coords: [65, 25] },
+    { id: 3, title: 'Temporal', severity: 'regular', city: 'Taubaté', time: '1h atrás', coords: [38, 62] },
+    { id: 4, title: 'Temporal previsto', severity: 'regular', city: 'Guaratinguetá', time: '3h atrás', coords: [65, 25] },
   ],
 }
 
