@@ -97,26 +97,6 @@ export default function Perfil() {
 
         {/* Info + Permissions + Activity */}
         <div className="lg:col-span-2 space-y-5">
-          {/* Details */}
-          <Card>
-            <h3 className="text-card-title font-bold text-slate-800 mb-4">Dados Cadastrais</h3>
-            <dl className="grid grid-cols-2 gap-x-8 gap-y-4 text-sm">
-              {[
-                { label: 'NOME COMPLETO', value: form.name },
-                { label: 'CPF', value: form.cpf },
-                { label: 'E-MAIL', value: form.email },
-                { label: 'TELEFONE', value: form.phone },
-                { label: 'CARGO / FUNÇÃO', value: form.role },
-                { label: 'INSTITUIÇÃO', value: form.institution },
-              ].map(({ label, value }) => (
-                <div key={label}>
-                  <dt className="text-label text-slate-400">{label}</dt>
-                  <dd className="text-slate-700 font-medium mt-0.5 truncate">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </Card>
-
           {/* Permissions */}
           <Card>
             <h3 className="text-card-title font-bold text-slate-800 mb-4">Permissões de Acesso</h3>
