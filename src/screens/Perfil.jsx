@@ -44,11 +44,6 @@ export default function Perfil() {
 
   return (
     <div className="p-8 space-y-6 animate-fade-in">
-      <div>
-        <h1 className="text-title-medium font-bold text-slate-800">Perfil do Operador</h1>
-        <p className="text-sm text-slate-500 mt-1">Suas informações, permissões e atividade recente.</p>
-      </div>
-
       {saved && (
         <div className="flex items-center gap-3 bg-status-success-bg border border-status-success/30 text-status-success font-semibold text-sm px-4 py-3 rounded-lg animate-slide-up">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
