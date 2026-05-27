@@ -15,8 +15,7 @@ const BY_TYPE = [
   { type: 'Enchente', count: 42, pct: 34 },
   { type: 'Deslizamento', count: 28, pct: 22 },
   { type: 'Temporal', count: 21, pct: 17 },
-  { type: 'Queda de Árvore', count: 18, pct: 14 },
-  { type: 'Incêndio', count: 12, pct: 10 },
+  { type: 'Tornado', count: 1, pct: 10 },
   { type: 'Desabamento', count: 4, pct: 3 },
 ]
 
@@ -64,9 +63,7 @@ export default function Relatorios() {
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {[
           { label: 'TOTAL DE OCORRÊNCIAS', value: '327', delta: '+12%', positive: false, color: 'text-text-main' },
-          { label: 'MÉDIA MENSAL', value: '46,7', delta: '-3%', positive: true, color: 'text-text-main' },
           { label: 'TAXA DE RESOLUÇÃO', value: '89%', delta: '+5%', positive: true, color: 'text-status-success' },
-          { label: 'TEMPO MÉDIO RESPOSTA', value: '23 min', delta: '-8 min', positive: true, color: 'text-status-success' },
         ].map((kpi) => (
           <Card key={kpi.label} className="py-4">
             <p className="text-label text-slate-500 mb-1.5">{kpi.label}</p>
