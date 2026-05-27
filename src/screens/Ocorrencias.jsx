@@ -5,12 +5,10 @@ import Modal from '../components/Modal'
 const ALL_OCORRENCIAS = [
   { id: 'OC-001', type: 'Enchente', city: 'São José dos Campos', neighborhood: 'Jardim Aquarius', severity: 'critical', status: 'active', reportedAt: '2025-01-10T08:10:00', operator: 'Carlos Mendes', description: 'Rua inundada, famílias precisam de evacuação.' },
   { id: 'OC-002', type: 'Deslizamento', city: 'Caraguatatuba', neighborhood: 'Pegorelli', severity: 'severe', status: 'active', reportedAt: '2025-01-10T07:35:00', operator: 'Ana Souza', description: 'Talude instável após 80mm de chuva.' },
-  { id: 'OC-003', type: 'Queda de Árvore', city: 'Taubaté', neighborhood: 'Centro', severity: 'regular', status: 'resolved', reportedAt: '2025-01-10T06:20:00', operator: 'Roberto Lima', description: 'Árvore caída bloqueou a Av. Dom Pedro I.' },
   { id: 'OC-004', type: 'Incêndio', city: 'Jacareí', neighborhood: 'Vila Industrial', severity: 'severe', status: 'active', reportedAt: '2025-01-09T22:00:00', operator: 'Carlos Mendes', description: 'Incêndio em vegetação, vento forte dispersando chamas.' },
   { id: 'OC-005', type: 'Temporal', city: 'Guaratinguetá', neighborhood: 'Santa Luzia', severity: 'regular', status: 'monitoring', reportedAt: '2025-01-09T20:45:00', operator: 'Ana Souza', description: 'Acumulado de chuva dentro do previsto, vias transitáveis.' },
   { id: 'OC-006', type: 'Desabamento', city: 'Pindamonhangaba', neighborhood: 'Residencial Sul', severity: 'critical', status: 'resolved', reportedAt: '2025-01-09T18:00:00', operator: 'Roberto Lima', description: 'Muro residencial desabou, sem vítimas.' },
   { id: 'OC-007', type: 'Enchente', city: 'Taubaté', neighborhood: 'Bom Retiro', severity: 'severe', status: 'monitoring', reportedAt: '2025-01-09T15:30:00', operator: 'Carlos Mendes', description: 'Nível do córrego em elevação, monitorando.' },
-  { id: 'OC-008', type: 'Queda de Árvore', city: 'São José dos Campos', neighborhood: 'Vila Adyana', severity: 'regular', status: 'resolved', reportedAt: '2025-01-09T12:00:00', operator: 'Ana Souza', description: 'Galho de grande porte removido pela equipe.' },
 ]
 
 const SEVERITY_MAP = {
@@ -59,12 +57,6 @@ export default function Ocorrencias() {
 
   return (
     <div className="p-8 space-y-6 animate-fade-in">
-      {/* Header */}
-      <div>
-        <h1 className="text-title-medium font-bold text-slate-800">Ocorrências</h1>
-        <p className="text-sm text-slate-500 mt-1">Gerencie e monitore todas as ocorrências registradas.</p>
-      </div>
-
       {/* Stats */}
       <div className="grid grid-cols-3 gap-4">
         <Card className="flex items-center gap-4 py-4">
