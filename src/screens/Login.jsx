@@ -1,5 +1,8 @@
 import { useState } from 'react'
 import Card from '../components/Card'
+import monitoramentoIcon from '../assets/menu/ativo/map-pin.svg';
+import disparoIcon from '../assets/menu/ativo/flag.svg';
+import relatoriosIcon from '../assets/menu/ativo/pie-chart.svg';
 
 const Login = ({ view, setView, onLogin }) => {
   const [email, setEmail] = useState('')
@@ -16,27 +19,27 @@ const Login = ({ view, setView, onLogin }) => {
       <div className="hidden lg:flex w-1/2 bg-bg-sidebar flex-col justify-center items-center p-12 text-text-on-dark">
         <div className="text-center space-y-8">
           <div>
-            <h1 className="text-5xl font-bold mb-4">SMAN</h1>
+            <h1 className="text-5xl font-bold mb-4">SMDN</h1>
             <p className="text-2xl font-semibold">Sistema de Monitoramento de Desastres Naturais</p>
           </div>
 
           <div className="space-y-4 text-lg">
             <div className="flex items-start gap-3">
-              <span className="text-2xl">🗺️</span>
+              <span className="text-2xl"><img src={monitoramentoIcon} width="30" height="30" alt="map-pin" /></span>
               <div>
                 <p className="font-semibold">Monitoramento Geoespacial</p>
                 <p className="text-sm opacity-80">Rastreie ocorrências em tempo real no mapa</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-2xl">📢</span>
+              <span className="text-2xl"><img src={disparoIcon} width="30" height="30" alt="flag" /></span>
               <div>
                 <p className="font-semibold">Disparo Segmentado</p>
                 <p className="text-sm opacity-80">Envie alertas direcionados aos cidadãos</p>
               </div>
             </div>
             <div className="flex items-start gap-3">
-              <span className="text-2xl">📊</span>
+              <span className="text-2xl"><img src={relatoriosIcon} width="30" height="30" alt="pie-chart" /></span>
               <div>
                 <p className="font-semibold">Relatórios Analíticos</p>
                 <p className="text-sm opacity-80">Visualize estatísticas e tendências</p>
