@@ -10,39 +10,37 @@ const Login = ({ view, setView, onLogin }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    // TODO: Substituir por chamada real do Supabase
     onLogin()
   }
 
   return (
     <div className="flex h-screen">
       <div className="hidden lg:flex w-1/2 bg-bg-sidebar flex-col justify-center items-center p-12 text-text-on-dark">
-        <div className="text-center space-y-8">
+        <div className="text-center space-y-10">
           <div>
-
-            <div className="text-5xl font-bold mb-4">
-              <img src="/src/assets/logo-claro.svg" alt="SMDN Logo" className="w-full max-w-[160px]"/>
+            <div className="mb-6">
+              <img src="/src/assets/logo-claro.svg" alt="SMDN Logo" className="w-full max-w-[280px] mx-auto"/>
             </div>
             <p className="text-2xl font-semibold">Sistema de Monitoramento de Desastres Naturais</p>
           </div>
 
-          <div className="space-y-4 text-lg">
-            <div className="flex items-start gap-3">
-              <span className="text-2xl"><img src={monitoramentoIcon} width="30" height="30" alt="map-pin" /></span>
+          <div className="space-y-5 text-lg text-left">
+            <div className="flex items-center gap-4">
+              <span className="flex-shrink-0"><img src={monitoramentoIcon} width="30" height="30" alt="map-pin" /></span>
               <div>
                 <p className="font-semibold">Monitoramento Geoespacial</p>
                 <p className="text-sm opacity-80">Rastreie ocorrências em tempo real no mapa</p>
               </div>
             </div>
-            <div className="flex items-start gap-3">
-              <span className="text-2xl"><img src={disparoIcon} width="30" height="30" alt="flag" /></span>
+            <div className="flex items-center gap-4">
+              <span className="flex-shrink-0"><img src={disparoIcon} width="30" height="30" alt="flag" /></span>
               <div>
                 <p className="font-semibold">Disparo Segmentado</p>
                 <p className="text-sm opacity-80">Envie alertas direcionados aos cidadãos</p>
               </div>
             </div>
-            <div className="flex items-start gap-3">
-              <span className="text-2xl"><img src={relatoriosIcon} width="30" height="30" alt="pie-chart" /></span>
+            <div className="flex items-center gap-4">
+              <span className="flex-shrink-0"><img src={relatoriosIcon} width="30" height="30" alt="pie-chart" /></span>
               <div>
                 <p className="font-semibold">Relatórios Analíticos</p>
                 <p className="text-sm opacity-80">Visualize estatísticas e tendências</p>
