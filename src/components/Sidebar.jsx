@@ -50,16 +50,11 @@ export default function Sidebar({ currentScreen, setCurrentScreen, onLogout }) {
       {/* Brand */}
       <div className="px-5 pt-7 pb-6 border-b border-white/5">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-text-main flex items-center justify-center flex-shrink-0">
-            <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-              <path d="M10 2L17 6v8l-7 4L3 14V6l7-4Z" fill="white" opacity=".9" />
-              <path d="M10 2v14M3 6l7 4 7-4" stroke="#09162e" strokeWidth="1.2" />
-            </svg>
-          </div>
-          <div>
-            <p className="text-white font-bold text-sm leading-tight">SMDN</p>
-            <p className="text-text-on-dark text-[10px] opacity-70 leading-tight">Vale do Paraíba-SP</p>
-          </div>
+          <img
+            src="/src/assets/logo.svg"
+            alt="SMDN Logo"
+            className="w-9 h-9 flex-shrink-0"
+          />
         </div>
       </div>
 
